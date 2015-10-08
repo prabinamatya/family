@@ -1,6 +1,6 @@
 package com.prabin.family.services;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class FamilyServiceImpl implements FamilyService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Collection<People> findByLastName(String lastName) {
+	public List<People> findByLastName(String lastName) {
 		return peopleRepository.findByLastName(lastName);
 	}
 
