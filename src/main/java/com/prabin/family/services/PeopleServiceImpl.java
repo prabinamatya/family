@@ -10,7 +10,7 @@ import com.prabin.family.domain.People;
 import com.prabin.family.repository.PeopleRepository;
 
 @Component("familyService")
-public class FamilyServiceImpl implements FamilyService {
+public class PeopleServiceImpl implements PeopleService {
 	
 	@Autowired
 	private PeopleRepository peopleRepository;

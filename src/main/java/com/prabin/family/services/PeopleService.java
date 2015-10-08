@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.prabin.family.domain.People;
 
-public interface FamilyService {
+public interface PeopleService {
 	
 	void saveFamilyMember(People people);
 	
