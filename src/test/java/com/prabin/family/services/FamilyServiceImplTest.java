@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -18,7 +18,7 @@ import com.prabin.family.repository.PeopleRepository;
 @SpringApplicationConfiguration(classes = FamilyApplication.class)
 public class FamilyServiceImplTest {
 	
-	@InjectMocks
+	@Autowired
 	PeopleRepository mockPeopleRepository;
 
 	@Test
@@ -30,7 +30,8 @@ public class FamilyServiceImplTest {
 	@Test
 	public void testFindByLastName() {
 		List<People> lastName = mockPeopleRepository.findByLastName("Amatya");
-		Assert.assertEquals("Passed", 1, lastName.size(), 0);
+		Assert.assertEquals("Passed", 1, lastName.size());
+		Assert.assertEquals("First Name ", "Prabin", lastName.get(0).getFirstName());
 	}
 
 }

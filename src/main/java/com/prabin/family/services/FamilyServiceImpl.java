@@ -2,19 +2,17 @@ package com.prabin.family.services;
 
 import java.util.Collection;
 
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prabin.family.domain.People;
 import com.prabin.family.repository.PeopleRepository;
 
-
-@Service
+@Component("familyService")
 public class FamilyServiceImpl implements FamilyService {
 	
-	@Inject
+	@Autowired
 	private PeopleRepository peopleRepository;
 
 	@Override
