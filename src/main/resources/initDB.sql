@@ -1,21 +1,22 @@
 DROP TABLE people IF EXISTS;
 DROP TABLE family IF EXISTS;
 
-CREATE TABLE `people` (
-  `id` INT NOT NULL,
-  `first_name` VARCHAR(45) NULL,
-  `people_id` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (people_id) REFERENCES family (family_id) ON DELETE CASCADE
-);
-
 CREATE TABLE `family` (
-  `family_id` INT NOT NULL,
-  `last_name` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
-  `city` VARCHAR(45) NULL,
-  `state` VARCHAR(45) NULL,
-  `zip` INT NULL,
-  PRIMARY KEY (`id`)
-  
-);
+  `family_id` int(11) NOT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `zip` int(11) DEFAULT NULL,
+  PRIMARY KEY (`family_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `people` (
+  `people_id` int(11) NOT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `family_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`people_id`),
+  KEY `family_id_idx` (`family_id`),
+  CONSTRAINT `family_id` FOREIGN KEY (`family_id`) REFERENCES `family` (`family_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
