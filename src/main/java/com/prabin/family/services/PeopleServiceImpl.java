@@ -21,8 +21,8 @@ public class PeopleServiceImpl implements PeopleService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<People> findByLastName(String lastName) {
-		return peopleRepository.findByLastName(lastName);
+	public List<People> findByFirstName(String firstName) {
+		return peopleRepository.findByFirstName(firstName);
 	}
 
 }

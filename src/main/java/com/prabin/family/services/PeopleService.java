@@ -8,6 +8,6 @@ public interface PeopleService {
 	
 	void saveFamilyMember(People people);
 	
-	List<People> findByLastName(String lastName);
+	List<People> findByFirstName(String lastName);
 
 }

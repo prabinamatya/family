@@ -10,6 +10,6 @@ import com.prabin.family.domain.People;
 @Repository
 public interface PeopleRepository extends CrudRepository<People, Integer>{
 	
-	List<People> findByLastName(String lastName);
+	List<People> findByFirstName(String firstName);
 
 }

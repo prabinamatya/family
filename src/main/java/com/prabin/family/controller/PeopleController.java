@@ -19,6 +19,6 @@ public class PeopleController {
 	@ResponseBody
 	@Transactional(readOnly = true)
 	public String helloWorld() {
-		return peopleService.findByLastName("Amatya").get(0).getFirstName();
+		return peopleService.findByFirstName("prabin").get(0).getFirstName();
 	}
 }
