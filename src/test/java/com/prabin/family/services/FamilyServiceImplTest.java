@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +22,19 @@ import com.prabin.family.repository.PeopleRepository;
 public class FamilyServiceImplTest {
 	
 	@Autowired
-	PeopleRepository mockPeopleRepository;
+	PeopleRepository peopleRepository;
 	
 	@Autowired
-	FamilyRepository mockFamilyRepository;
+	FamilyRepository familyRepository;
 
 	@Test
 	public void testFindByLastName() {
-		List<People> firstName = mockPeopleRepository.findByFirstName("prabin");
+		List<People> firstName = peopleRepository.findByFirstName("prabin");
 		Assert.assertEquals("Size", 1, firstName.size());
 		Assert.assertEquals("Last Name ", "amatya", firstName.get(0).getFamilies().getLastName());
 	}
 	
 	@Test
-	@Ignore
 	public void testSaveAFamily() throws Exception {
 		Family family = new Family();
 		family.setAddress("Scotland yar");
@@ -45,10 +43,9 @@ public class FamilyServiceImplTest {
 		family.setZip(62221);
 		family.setPeoples(createPeople());
 		
-		mockFamilyRepository.save(family);
+		familyRepository.save(family);
 
-		Iterable<Family> allFamily = mockFamilyRepository.findAll();
-		Assert.assertEquals("Size", "London", allFamily.iterator().next().getCity());
+		Assert.assertEquals("Size", 3, familyRepository.count());
 	}
 	
 	public Set<People> createPeople() {
