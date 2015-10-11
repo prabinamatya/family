@@ -1,11 +1,11 @@
 package com.prabin.family.services;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +36,7 @@ public class FamilyServiceImplTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testSaveAFamily() throws Exception {
 		Family family = new Family();
 		family.setAddress("Scotland yar");
