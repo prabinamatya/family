@@ -7,5 +7,7 @@ import com.prabin.family.domain.Family;
 
 @Repository
 public interface FamilyRepository extends CrudRepository<Family, Integer>{
+	
+	Family findOneByLastName(String lastName);
 
 }

@@ -1,8 +1,10 @@
 package com.prabin.family.services;
 
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import javax.transaction.Transactional;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,45 +17,70 @@ import com.prabin.family.FamilyApplication;
 import com.prabin.family.domain.Family;
 import com.prabin.family.domain.People;
 import com.prabin.family.repository.FamilyRepository;
-import com.prabin.family.repository.PeopleRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FamilyApplication.class)
+@Transactional
 public class FamilyServiceImplTest {
 	
-	@Autowired
-	PeopleRepository peopleRepository;
+//	@Mock
+//	FamilyRepository mockFamilyRepository;
+//	
+//	@Before
+//	public void setUp() {
+//		MockitoAnnotations.initMocks(this);
+//	}
 	
 	@Autowired
 	FamilyRepository familyRepository;
 
 	@Test
-	public void testFindByLastName() {
-		List<People> firstName = peopleRepository.findByFirstName("prabin");
-		Assert.assertEquals("Size", 1, firstName.size());
-		Assert.assertEquals("Last Name ", "amatya", firstName.get(0).getFamilies().getLastName());
-	}
-	
-	@Test
-	public void testSaveAFamily() throws Exception {
-		Family family = new Family();
-		family.setAddress("Scotland yar");
-		family.setCity("London");
-		family.setLastName("Clarkson");
-		family.setZip(62221);
-		family.setPeoples(createPeople());
+	public void testfindAllPeopleByFamily() {
 		
-		familyRepository.save(family);
-
-		Assert.assertEquals("Size", 3, familyRepository.count());
+//		Family mockFamily = createFamily();
+//		Mockito.when(mockFamilyRepository.findOneByLastName(Mockito.any(String.class))).thenReturn(mockFamily);
+//		
+//		Family familyWithLastName = mockFamilyRepository.findOneByLastName("Scott");
+//		Set<People> peoples = familyWithLastName.getPeoples();
+		
+//		Assert.assertEquals("Number of People", 3, peoples.size());
+		
+		Family familyLast = familyRepository.findOneByLastName("amatya");
+		Set<People> peoples = familyLast.getPeoples();
+		Assert.assertEquals("Number of People", 3, peoples.size());
+		
 	}
-	
-	public Set<People> createPeople() {
-		Set<People> peopleSet = new HashSet<People>();
-		People people = new People();
-		people.setFirstName("Jeremy");
-		peopleSet.add(people);
-		return peopleSet;
+
+	private Family createFamily() {
+		Family family = new Family();
+		family.setCity("Chicago");
+		family.setFamilyId(2000);
+		family.setLastName("Scott");
+		family.setPeoples(createPeoples());
+		family.setState("IL");
+		family.setZip(60618);
+		return family;
+	}
+
+	private Set<People> createPeoples() {
+		
+		Set<People> peoples = new HashSet<People>();
+		
+		People people1 = new People();
+		people1.setFirstName("Rob");
+		people1.setPeople_id(3000);
+		
+		People people2 = new People();
+		people2.setFirstName("Thomas");
+		people2.setPeople_id(3000);
+
+		People people3 = new People();
+		people3.setFirstName("Meg");
+		people3.setPeople_id(3000);
+		
+		peoples.addAll(Arrays.asList(people1, people2, people3));
+		
+		return peoples;
 	}
 
 }

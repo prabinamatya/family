@@ -5,10 +5,13 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import jersey.repackaged.com.google.common.base.Objects;
 
 @Entity
 @Table(name = "family")
@@ -34,6 +37,7 @@ public class Family {
 	private Integer zip;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile")
+//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "famile")
 	private Set<People> peoples;
 	
 	public Integer getFamilyId() {
@@ -90,6 +94,27 @@ public class Family {
 
 	public void setPeoples(Set<People> peoples) {
 		this.peoples = peoples;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(familyId, lastName, address, city, state, zip,
+				peoples);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof Family) {
+			Family that = (Family) object;
+			return Objects.equal(this.familyId, that.familyId)
+					&& Objects.equal(this.lastName, that.lastName)
+					&& Objects.equal(this.address, that.address)
+					&& Objects.equal(this.city, that.city)
+					&& Objects.equal(this.state, that.state)
+					&& Objects.equal(this.zip, that.zip)
+					&& Objects.equal(this.peoples, that.peoples);
+		}
+		return false;
 	}
 
 }

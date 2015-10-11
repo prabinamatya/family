@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import jersey.repackaged.com.google.common.base.Objects;
+
 @Entity
 @Table(name = "people")
 public class People {
@@ -47,20 +49,20 @@ public class People {
 		this.famile = famile;
 	}
 
-//	@Override
-//	public boolean equals(Object o) {
-//		if (this == o)
-//			return true;
-//		if (o == null || getClass() != o.getClass())
-//			return false;
-//		People people = (People) o;
-//		return Objects.equal(firstName, people.firstName) && 
-//				Objects.equal(lastName, people.lastName) &&
-//				Objects.equal(address, people.address);
-//	}
-//	
-//	@Override
-//	public int hashCode() {
-//		return Objects.hashCode(firstName, lastName, address);
-//	}
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(people_id, firstName, famile);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof People) {
+			People that = (People) object;
+			return Objects.equal(this.people_id, that.people_id)
+					&& Objects.equal(this.firstName, that.firstName)
+					&& Objects.equal(this.famile, that.famile);
+		}
+		return false;
+	}
+
 }

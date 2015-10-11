@@ -11,5 +11,5 @@ import com.prabin.family.domain.People;
 public interface PeopleRepository extends CrudRepository<People, Integer>{
 	
 	List<People> findByFirstName(String firstName);
-
+	
 }

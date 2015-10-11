@@ -6,8 +6,12 @@ import com.prabin.family.domain.People;
 
 public interface PeopleService {
 	
-	void saveFamilyMember(People people);
+	//create
+	void saveOnePeople(People people);
 	
+	//read
 	List<People> findByFirstName(String lastName);
-
+	
+	//delete
+	void deletePerson(People people);
 }
