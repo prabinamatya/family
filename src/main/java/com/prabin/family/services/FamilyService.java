@@ -6,6 +6,6 @@ import com.prabin.family.domain.People;
 
 public interface FamilyService {
 	
-	Set<People> findAllPeopleByFamily(String lastName);
+	Set<People> findAllPeopleByFamilyLastName(String lastName);
 
 }

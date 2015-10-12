@@ -18,7 +18,7 @@ public class FamilyServiceImpl implements FamilyService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Set<People> findAllPeopleByFamily(String lastName) {
+	public Set<People> findAllPeopleByFamilyLastName(String lastName) {
 		Family family = familyRepository.findOneByLastName(lastName);
 		return family.getPeoples();
 	}

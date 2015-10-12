@@ -21,4 +21,8 @@ public class PeopleController {
 	public String helloWorld() {
 		return peopleService.findByFirstName("prabin").get(0).getFirstName();
 	}
+	
+	public void updatePeople() {
+		
+	}
 }
