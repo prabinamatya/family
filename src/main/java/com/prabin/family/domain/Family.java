@@ -12,8 +12,6 @@ import javax.persistence.Table;
 
 import jersey.repackaged.com.google.common.base.Objects;
 
-import org.springframework.transaction.annotation.Transactional;
-
 @Entity
 @Table(name = "family")
 public class Family {
@@ -37,8 +35,7 @@ public class Family {
 	@Column(name = "zip")
 	private Integer zip;
 
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile")
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile")
 	private Set<People> peoples;
 	
 	public Integer getFamilyId() {
@@ -89,7 +86,6 @@ public class Family {
 		this.zip = zip;
 	}
 
-	@Transactional
 	public Set<People> getPeoples() {
 		return peoples;
 	}
@@ -100,8 +96,7 @@ public class Family {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(familyId, lastName, address, city, state, zip,
-				peoples);
+		return Objects.hashCode(familyId, lastName, address, city, state, zip);
 	}
 
 	@Override
@@ -113,8 +108,7 @@ public class Family {
 					&& Objects.equal(this.address, that.address)
 					&& Objects.equal(this.city, that.city)
 					&& Objects.equal(this.state, that.state)
-					&& Objects.equal(this.zip, that.zip)
-					&& Objects.equal(this.peoples, that.peoples);
+					&& Objects.equal(this.zip, that.zip);
 		}
 		return false;
 	}

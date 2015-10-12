@@ -51,7 +51,7 @@ public class People {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(people_id, firstName, famile);
+		return Objects.hashCode(people_id, firstName);
 	}
 
 	@Override
@@ -59,8 +59,7 @@ public class People {
 		if (object instanceof People) {
 			People that = (People) object;
 			return Objects.equal(this.people_id, that.people_id)
-					&& Objects.equal(this.firstName, that.firstName)
-					&& Objects.equal(this.famile, that.famile);
+					&& Objects.equal(this.firstName, that.firstName);
 		}
 		return false;
 	}
