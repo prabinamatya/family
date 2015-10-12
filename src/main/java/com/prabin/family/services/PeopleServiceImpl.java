@@ -11,7 +11,7 @@ import com.prabin.family.domain.People;
 import com.prabin.family.repository.PeopleRepository;
 
 @Service
-@Component("familyService")
+//@Component("peopleService")
 public class PeopleServiceImpl implements PeopleService {
 	
 	@Autowired

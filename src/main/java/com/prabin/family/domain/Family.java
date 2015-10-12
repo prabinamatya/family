@@ -5,13 +5,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import jersey.repackaged.com.google.common.base.Objects;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "family")
@@ -36,8 +37,8 @@ public class Family {
 	@Column(name = "zip")
 	private Integer zip;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile")
-//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "famile")
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "famile", orphanRemoval = true)
 	private Set<People> peoples;
 	
 	public Integer getFamilyId() {
@@ -88,6 +89,7 @@ public class Family {
 		this.zip = zip;
 	}
 
+	@Transactional
 	public Set<People> getPeoples() {
 		return peoples;
 	}
