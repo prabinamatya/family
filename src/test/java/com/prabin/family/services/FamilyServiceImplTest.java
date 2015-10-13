@@ -29,6 +29,9 @@ public class FamilyServiceImplTest {
 		Family familyLast = familyRepository.findOneByLastName("amatya");
 		Set<People> peoples = familyLast.getPeoples();
 		Assert.assertEquals("Number of People", 3, peoples.size());
+		for (People people : peoples) {
+			System.out.println(people.getFirstName());
+		}
 		
 	}
 
