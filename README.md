@@ -1,5 +1,7 @@
 # family
 Maven spring boot app
+	- spring-data
+	- H2 Database
 
 # to run:
 mvn spring-boot:run
