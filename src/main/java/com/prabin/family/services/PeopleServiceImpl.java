@@ -17,8 +17,8 @@ public class PeopleServiceImpl implements PeopleService {
 	private PeopleRepository peopleRepository;
 
 	@Override
-	public void saveOnePeople(People people) {
-		peopleRepository.save(people);
+	public People saveOnePeople(People people) {
+		return peopleRepository.save(people);
 	}
 
 	@Override
@@ -27,8 +27,13 @@ public class PeopleServiceImpl implements PeopleService {
 	}
 
 	@Override
-	public void deletePerson(People people) {
-		peopleRepository.delete(people);
+	public void delete(Integer id) {
+		peopleRepository.delete(id);
+	}
+
+	@Override
+	public List<People> findAllPeople() {
+		 return peopleRepository.findAll();
 	}
 
 }

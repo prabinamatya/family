@@ -40,6 +40,8 @@ public class PeopleServiceImplTest {
 	//Create & Save Family & people
 	@Test
 	public void testSaveAFamily() throws Exception {
+		Assert.assertEquals("Size before insertion and save", 2, familyRepository.count());
+		
 		Family family = new Family();
 		family.setAddress("Scotland yar");
 		family.setCity("London");
@@ -49,7 +51,7 @@ public class PeopleServiceImplTest {
 		
 		familyRepository.save(family);
 
-		Assert.assertEquals("Size", 3, familyRepository.count());
+		Assert.assertEquals("Size after insertion and save", 3, familyRepository.count());
 	}
 	
 	//update people
@@ -75,7 +77,7 @@ public class PeopleServiceImplTest {
 		People peopleOne = peopleRepository.findOne(1000);
 		Assert.assertEquals("First Name Access", "prabin", peopleOne.getFirstName());
 
-		peopleRepository.delete(peopleOne);
+		peopleRepository.delete(1000);
 		
 		Assert.assertNull(peopleRepository.findOne(1000));
 		
